@@ -1,7 +1,6 @@
 package com.zhengliang.project.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
