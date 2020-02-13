@@ -4,7 +4,7 @@ import Dashboard from './component/Dashboard';
 import Header from './component/Layout/Header';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import AddProject from './component/Project/AddProject';
+import AddActivity from "./component/Activity/AddActivity"
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <Header />
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/addProject" component={AddProject} />
+        <Route exact path="/addActivity" component={AddActivity} />
       </div>
     </Router>
   );
