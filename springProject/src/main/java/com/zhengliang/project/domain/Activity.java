@@ -12,13 +12,16 @@ import java.util.List;
 @Entity
 public class Activity {
 
+    public Activity(){
+
+    }
+
     // For an activity
     // Where
     // When
     // What's the activity
     // Who's attending the activity
     // What's the maximum capacity
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,9 +45,9 @@ public class Activity {
     private String location;
     
     // when
-    @JsonFormat
+    @JsonFormat()
     private Date startTime;
-    @JsonFormat
+    @JsonFormat()
     private Date endTime;
 
     // Who's attending
@@ -72,6 +75,38 @@ public class Activity {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getLocation() {
         return location;
     }
@@ -96,28 +131,12 @@ public class Activity {
         this.endTime = endTime;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getAttending() {
         return attending;
     }
 
     public void setAttending(String attending) {
         this.attending = attending;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 
     public Date getCreated_at() {

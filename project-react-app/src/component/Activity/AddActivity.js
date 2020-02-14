@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import {createActivity} from "../../actions/activityActions"
 
 class AddActivity extends Component {
   constructor() {
@@ -27,6 +30,7 @@ class AddActivity extends Component {
         0
       )}:${`${new Date().getMinutes()}`.padStart(2, 0)}`
     };
+
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -39,15 +43,15 @@ class AddActivity extends Component {
     e.preventDefault();
     const newActivity = {
       title: this.state.title,
-      type: this.state.type,
-      capacity: this.state.capacity,
+      // type: this.state.type,
+      // capacity: this.state.capacity,
       location: this.state.location,
-      description: this.state.description,
-      startTime: this.state.startTime,
-      endTime: this.state.endTime
+      // description: this.state.description,
+      // startTime: this.state.startTime,
+      // endTime: this.state.endTime
     };
 
-    console.log(newActivity);
+    this.props.createActivity(newActivity, this.props.history);
   }
 
   render() {
@@ -60,6 +64,7 @@ class AddActivity extends Component {
               <hr />
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
+                  <h6>Title</h6>
                   <input
                     type="text"
                     className="form-control form-control-lg "
@@ -70,39 +75,40 @@ class AddActivity extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="Type"
-                    name="type"
-                    value={this.state.type}
-                    onChange={this.onChange}
-                  />
+                  <h6>Type of the Activity</h6>
+                  <select className="form-control" value={this.state.type} onChange={this.onChange}>
+                    <option value="0">Soccer</option>
+                    <option value="1">Basketball</option>
+                    <option value="2">Study</option>
+                  </select>
                 </div>
                 <div className="form-group">
+                  <h6>Capacity</h6>
                   <input
                     type="text"
                     className="form-control form-control-lg"
-                    placeholder="Capacity"
+                    placeholder="What's the capacity (has to be number)"
                     name="capacity"
                     value={this.state.capacity}
                     onChange={this.onChange}
                   />
                 </div>
                 <div className="form-group">
+                  <h6>Location</h6>
                   <input
                     type="text"
                     className="form-control form-control-lg"
-                    placeholder="Location"
+                    placeholder="Where?"
                     name="location"
                     value={this.state.location}
                     onChange={this.onChange}
                   />
                 </div>
                 <div className="form-group">
+                  <h6>Description</h6>
                   <textarea
                     className="form-control form-control-lg"
-                    placeholder="Description"
+                    placeholder="Any addtional information?"
                     name="description"
                     value={this.state.description}
                     onChange={this.onChange}
@@ -132,6 +138,7 @@ class AddActivity extends Component {
                   type="submit"
                   className="btn btn-primary btn-block mt-4"
                 />
+                <br></br>
               </form>
             </div>
           </div>
@@ -141,4 +148,13 @@ class AddActivity extends Component {
   }
 }
 
-export default AddActivity;
+AddActivity.propTypes = {
+  createActivity : PropTypes.func.isRequired,
+  errors : PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  errors: state.errors
+});
+
+export default connect(null, { createActivity })(AddActivity);

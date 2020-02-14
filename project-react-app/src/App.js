@@ -4,17 +4,21 @@ import Dashboard from './component/Dashboard';
 import Header from './component/Layout/Header';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import AddActivity from "./component/Activity/AddActivity"
+import AddActivity from "./component/Activity/AddActivity";
+import {Provider} from "react-redux";
+import store from "./store";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/addActivity" component={AddActivity} />
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <Header />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/addActivity" component={AddActivity} />
+        </div>
+      </Router>
+    </Provider>
   );
 }
 

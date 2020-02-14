@@ -15,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/Activity")
+@CrossOrigin
 public class ActivityController {
 
     @Autowired
